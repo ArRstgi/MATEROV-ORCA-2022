@@ -1,0 +1,17 @@
+Autonomous Tasks:
+
+Task 1:
+Move the robot into the docking station
+Can be done by a forwards movement for a specific period of time
+
+Task 2: 
+Move the robot along a red line with multiple turns
+
+Task 3:
+Create a photo collage (photomosaic) of the 8 photos taken of the wreck stite
+
+For visual representation of tasks:
+https://vimeo.com/679544035
+
+
+
