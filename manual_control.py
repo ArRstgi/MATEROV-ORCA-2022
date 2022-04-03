@@ -43,6 +43,34 @@ def stop():
         0,
         0)
 
+def up():
+    master.mav.manual_control_send(
+
+        # The values correspond to forward/backwards, roll of bot,
+        # up/down of a bot, right/left turning 
+        # and buttons used (usually 0) respectively
+        
+        master.target_system,
+        0,
+        0,
+        750,
+        0,
+        0)    
+
+def down():
+    master.mav.manual_control_send(
+
+        # The values correspond to forward/backwards, roll of bot,
+        # up/down of a bot, right/left turning 
+        # and buttons used (usually 0) respectively
+        
+        master.target_system,
+        0,
+        0,
+        250,
+        0,
+        0)
+
 if __name__ == '__main__':
 
     def task1start(): 
