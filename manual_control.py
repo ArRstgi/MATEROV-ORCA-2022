@@ -74,13 +74,17 @@ def down():
 if __name__ == '__main__':
 
     def task1start(): 
-    
+        
+        #Moves for wards for 1 second
+
         p = multiprocessing.Process(target=forward)
         p.start()
         time.sleep(1)
         p.terminate()
     
     def task1stop():
+
+        #Makes the rovot stop
 
         p = multiprocessing.Process(target=stop)
         p.start()
