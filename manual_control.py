@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
     def task1start(): 
         
-        #Moves for wards for 1 second
+        #Moves forwards for 1 second
 
         p = multiprocessing.Process(target=forward)
         p.start()
@@ -84,7 +84,7 @@ if __name__ == '__main__':
     
     def task1stop():
 
-        #Makes the rovot stop
+        #Makes the robot stop moving
 
         p = multiprocessing.Process(target=stop)
         p.start()

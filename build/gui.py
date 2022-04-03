@@ -8,7 +8,7 @@ ASSETS_PATH = OUTPUT_PATH / Path("./assets")
 def relative_to_assets(path: str) -> Path:
     return ASSETS_PATH / Path(path)
 
-def fullgui():
+def fullgui(a,b,c,d,e,f,g):
 
     window = Tk()
 
@@ -72,21 +72,39 @@ def fullgui():
         font=("Inter", 24 * -1)
     )
 
-    button_img_t3pause = PhotoImage(
-        file=relative_to_assets("task 3 pause.png"))
-    button_t3pause = Button(
-        image=button_img_t3pause,
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: print("button_2 clicked"),
-        relief="flat"
-    )
-    button_t3pause.place(
-        x=789.0,
-        y=256.0,
-        width=289.0,
-        height=55.0
-    )
+    button_img_t1start = PhotoImage(
+            file=relative_to_assets("task 1 start.png"))
+    button_t1start = Button(
+            image=button_img_t1start,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: a,
+            relief="flat"
+        )
+    button_t1start.place(
+            x=136.0,
+            y=94.0,
+            width=289.0,
+            height=55.0
+        )
+
+
+    button__img_t1stop = PhotoImage(
+            file=relative_to_assets("task 1 stop.png"))
+    button_t1stop = Button(
+            image=button__img_t1stop,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: b,
+            relief="flat"
+        )
+    button_t1stop.place(
+            x=135.0,
+            y=175.0,
+            width=289.0,
+            height=55.0
+        )
+
 
     button_img_t2start = PhotoImage(
         file=relative_to_assets("task 2 start.png"))
@@ -94,7 +112,7 @@ def fullgui():
         image=button_img_t2start,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_4 clicked"),
+        command=lambda: c,
         relief="flat"
     )
     button_t2start.place(
@@ -104,21 +122,24 @@ def fullgui():
         height=55.0
     )
 
-    button_img_t1start = PhotoImage(
-        file=relative_to_assets("task 1 start.png"))
-    button_t1start = Button(
-        image=button_img_t1start,
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: print('task1start()'),
-        relief="flat"
-    )
-    button_t1start.place(
-        x=136.0,
-        y=94.0,
-        width=289.0,
-        height=55.0
-    )
+
+    button_img_t2stop = PhotoImage(
+            file=relative_to_assets("task 2 stop.png"))
+    button_t2stop = Button(
+            image=button_img_t2stop,
+            borderwidth=0,
+            highlightthickness=0,
+            command=lambda: d,
+            relief="flat"
+        )
+    button_t2stop.place(
+            x=460.0,
+            y=175.0,
+            width=289.0,
+            height=55.0
+        )
+        
+
 
     button_img_t3start = PhotoImage(
         file=relative_to_assets("task 3 start.png"))
@@ -126,7 +147,7 @@ def fullgui():
         image=button_img_t3start,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_6 clicked"),
+        command=lambda: e,
         relief="flat"
     )
     button_t3start.place(
@@ -136,21 +157,7 @@ def fullgui():
         height=55.0
     )
 
-    button__img_t1stop = PhotoImage(
-        file=relative_to_assets("task 1 stop.png"))
-    button_t1stop = Button(
-        image=button__img_t1stop,
-        borderwidth=0,
-        highlightthickness=0,
-        command=lambda: print('task1stop()'),
-        relief="flat"
-    )
-    button_t1stop.place(
-        x=135.0,
-        y=175.0,
-        width=289.0,
-        height=55.0
-    )
+    
 
     button_img_t3stop = PhotoImage(
         file=relative_to_assets("task 3 stop.png"))
@@ -158,7 +165,7 @@ def fullgui():
         image=button_img_t3stop,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_8 clicked"),
+        command=lambda: f,
         relief="flat"
     )
     button_t3stop.place(
@@ -168,21 +175,23 @@ def fullgui():
         height=55.0
     )
 
-    button_img_t2stop = PhotoImage(
-        file=relative_to_assets("task 2 stop.png"))
-    button_t2stop = Button(
-        image=button_img_t2stop,
+
+    button_img_t3pause = PhotoImage(
+        file=relative_to_assets("task 3 pause.png"))
+    button_t3pause = Button(
+        image=button_img_t3pause,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: print("button_9 clicked"),
+        command=lambda: g,
         relief="flat"
     )
-    button_t2stop.place(
-        x=460.0,
-        y=175.0,
+    button_t3pause.place(
+        x=789.0,
+        y=256.0,
         width=289.0,
         height=55.0
     )
+
 
     window.resizable(False, False)
     window.mainloop()
