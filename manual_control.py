@@ -1,8 +1,7 @@
-# Import mavutil
-import multiprocessing
 from pymavlink import mavutil
 from multiprocessing import Process
 import time
+import cv2 as c
 # Create the connection
 master = mavutil.mavlink_connection('udpin:0.0.0.0:14550')
 # Wait a heartbeat before sending commands
@@ -14,6 +13,7 @@ master.wait_heartbeat()
 # Warning: Because of some legacy workaround, z will work between [0-1000]
 # where 0 is full reverse, 500 is no output and 1000 is full throttle.
 # x,y and r will be between [-1000 and 1000].
+
 
 def forward():
     master.mav.manual_control_send(
@@ -71,25 +71,25 @@ def down():
         0,
         0)
 
-if __name__ == '__main__':
 
-    def task1start(): 
-        
-        #Moves forwards for 1 second
 
-        p = multiprocessing.Process(target=forward)
-        p.start()
-        time.sleep(1)
-        p.terminate()
+def task1start(): 
     
-    def task1stop():
+    #Moves forwards for 1 second
 
-        #Makes the robot stop moving
+    p = Process(target=forward)
+    p.start()
+    time.sleep(1)
+    p.terminate()
 
-        p = multiprocessing.Process(target=stop)
-        p.start()
-        time.sleep(1)
-        p.terminate()
+def task1stop():
+
+    #Makes the robot stop moving
+
+    p = Process(target=stop)
+    p.start()
+    time.sleep(1)
+    p.terminate()
 
 
 

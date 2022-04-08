@@ -1,14 +1,17 @@
 from pathlib import Path
 from tkinter import Tk, Canvas, Button, PhotoImage
 
-OUTPUT_PATH = Path(__file__).parent
-ASSETS_PATH = OUTPUT_PATH / Path("./assets")
+#from manual_control import task1start, task1stop
+#from task2 import task2start, task2stop
+from task3 import takescreenshot, makemosaic, task3stop
 
+def fullgui():
 
-def relative_to_assets(path: str) -> Path:
-    return ASSETS_PATH / Path(path)
+    OUTPUT_PATH = Path(__file__).parent
+    ASSETS_PATH = OUTPUT_PATH / Path("./assets")
 
-def fullgui(a,b,c,d,e,f,g):
+    def relative_to_assets(path: str) -> Path:
+        return ASSETS_PATH / Path(path)
 
     window = Tk()
 
@@ -78,7 +81,7 @@ def fullgui(a,b,c,d,e,f,g):
             image=button_img_t1start,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: a,
+            command=lambda: print('task1start()'),
             relief="flat"
         )
     button_t1start.place(
@@ -90,12 +93,12 @@ def fullgui(a,b,c,d,e,f,g):
 
 
     button__img_t1stop = PhotoImage(
-            file=relative_to_assets("task 1 stop.png"))
+            file=relative_to_assets('task 1 stop.png'))
     button_t1stop = Button(
             image=button__img_t1stop,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: b,
+            command=lambda: print('task1stop()'),
             relief="flat"
         )
     button_t1stop.place(
@@ -112,7 +115,7 @@ def fullgui(a,b,c,d,e,f,g):
         image=button_img_t2start,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: c,
+        command=lambda: print('task2start()'),
         relief="flat"
     )
     button_t2start.place(
@@ -129,7 +132,7 @@ def fullgui(a,b,c,d,e,f,g):
             image=button_img_t2stop,
             borderwidth=0,
             highlightthickness=0,
-            command=lambda: d,
+            command=lambda: print('task2stop()'),
             relief="flat"
         )
     button_t2stop.place(
@@ -141,34 +144,33 @@ def fullgui(a,b,c,d,e,f,g):
         
 
 
-    button_img_t3start = PhotoImage(
-        file=relative_to_assets("task 3 start.png"))
-    button_t3start = Button(
-        image=button_img_t3start,
+    button_img_screenshot = PhotoImage(
+        file=relative_to_assets("take screenshot.png"))
+    button_screenshot = Button(
+        image=button_img_screenshot,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: e,
+        command=lambda: takescreenshot(),
         relief="flat"
     )
-    button_t3start.place(
+    button_screenshot.place(
         x=789.0,
         y=94.0,
         width=289.0,
         height=55.0
     )
 
-    
 
-    button_img_t3stop = PhotoImage(
-        file=relative_to_assets("task 3 stop.png"))
-    button_t3stop = Button(
-        image=button_img_t3stop,
+    button_img_mosaic = PhotoImage(
+        file=relative_to_assets("make mosaic.png"))
+    button_mosaic = Button(
+        image=button_img_mosaic,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: f,
+        command=lambda: makemosaic(),
         relief="flat"
     )
-    button_t3stop.place(
+    button_mosaic.place(
         x=789.0,
         y=175.0,
         width=289.0,
@@ -176,16 +178,16 @@ def fullgui(a,b,c,d,e,f,g):
     )
 
 
-    button_img_t3pause = PhotoImage(
-        file=relative_to_assets("task 3 pause.png"))
-    button_t3pause = Button(
-        image=button_img_t3pause,
+    button_img_t3stop = PhotoImage(
+        file=relative_to_assets("task 3 stop.png"))
+    button_t3stop = Button(
+        image=button_img_t3stop,
         borderwidth=0,
         highlightthickness=0,
-        command=lambda: g,
+        command=lambda: task3stop(),
         relief="flat"
     )
-    button_t3pause.place(
+    button_t3stop.place(
         x=789.0,
         y=256.0,
         width=289.0,
