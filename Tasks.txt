@@ -4,13 +4,15 @@ Task 1 (Done except for testing) :
 Move the robot into the docking station
 Can be done by a forwards movement for a specific period of time
 
-Task 2 (Done part 1): 
+Task 2 (Done except for testing): 
 Move the robot along a red line with multiple turns
 1 - Create mask to differentiate rope color
 2 - Create code to make robot follow the rope
 
-Task 3:
+Task 3(Done except for testing):
 Create a photo collage (photomosaic) of the 8 photos taken of the wreck stite
+-Take screenshots fo camera
+-Make photomosaic
 
 
 
