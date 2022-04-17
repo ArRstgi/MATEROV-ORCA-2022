@@ -1,11 +1,11 @@
 import cv2
 
 # Load image, grayscale, Gaussian blur, Otsu's threshold
-path = r'C:\Users\madha\Documents\Madhav Programming\MATEROV-ORCA-2022\Fish Length Detection\1.jpg'
+path = r'C:\Users\madha\Documents\Madhav Programming\MATEROV-ORCA-2022\Fish Length Detection\3.jpg'
 image = cv2.imread(path)
 gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 blur = cv2.GaussianBlur(gray, (5,5), 0)
-thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY_INV + cv2.THRESH_OTSU)[1]
+thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
 
 # Find bounding box
 x,y,w,h = cv2.boundingRect(thresh)
