@@ -1,11 +1,12 @@
 import cv2 as cv2
 import numpy as np
-# Load image, grayscale, Gaussian blur, Otsu's threshold
-path = r'C:\Users\madha\Documents\Madhav Programming\MATEROV-ORCA-2022\Wreck Length Detection\1.jpg'
-wreck = cv2.imread(path)
+
 kernel = np.ones((3,3), np.uint8)
 cm_offset = 0
 pixel_offset = 0
+
+path = r'C:\Users\madha\Documents\Madhav Programming\MATEROV-ORCA-2022\Wreck Length Detection\1.jpg'
+wreck = cv2.imread(path)
 
 gray = cv2.cvtColor(wreck, cv2.COLOR_BGR2GRAY)
 blur = cv2.GaussianBlur(gray, (5,5), 0)

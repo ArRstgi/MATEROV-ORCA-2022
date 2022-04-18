@@ -1,13 +1,14 @@
 import cv2
 import numpy as np
 
-path = r'C:\Users\madha\Documents\Madhav Programming\MATEROV-ORCA-2022\Fish Length Detection\1.jpg'
-img_orig = cv2.imread(path)
 fish = img_orig.copy()
 kernel = np.ones((7,7), np.uint8)
 cm_offset = 0
 pixel_offset = 0
 fish_ref = 11
+
+path = r'C:\Users\madha\Documents\Madhav Programming\MATEROV-ORCA-2022\Fish Length Detection\1.jpg'
+img_orig = cv2.imread(path)
 
 gray = cv2.cvtColor(img_orig, cv2.COLOR_BGR2GRAY)
 blur = cv2.GaussianBlur(gray, (7, 7), 0)
