@@ -5,7 +5,7 @@ kernel = np.ones((3,3), np.uint8)
 cm_offset = 0
 pixel_offset = 0
 
-path = r'C:\Users\madha\Documents\Madhav Programming\MATEROV-ORCA-2022\Wreck Length Detection\1.jpg'
+path = r'/home/cerealkiller2527/Documents/Programming/MATEROV-ORCA-2022/Wreck Length Detection/1.jpg'
 wreck = cv2.imread(path)
 
 gray = cv2.cvtColor(wreck, cv2.COLOR_BGR2GRAY)
@@ -15,7 +15,7 @@ img_erode = cv2.erode(thresh, kernel, iterations=1)
 
 # Find bounding box
 x,y,w,h = cv2.boundingRect(img_erode)
-#length = (25*(w+(offset*w/25))/h)
+#length = (25*(w+(pixel_offset*(w/25)))/h) + cm_offset
 length = ((25*w)/(h+pixel_offset)) + cm_offset
 length = round(length,2)
 cv2.rectangle(wreck, (x,y), (x+w, y+h), (36,255,12), 2)
