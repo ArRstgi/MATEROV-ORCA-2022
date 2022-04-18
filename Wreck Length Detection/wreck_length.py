@@ -5,6 +5,7 @@ kernel = np.ones((3,3), np.uint8)
 cm_offset = 0
 pixel_offset = 0
 
+
 path = r'C:\Users\madha\Documents\Madhav Programming\MATEROV-ORCA-2022\Wreck Length Detection\1.jpg'
 wreck = cv2.imread(path)
 
