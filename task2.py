@@ -21,6 +21,7 @@ def linefollower():
 
         mask = c.inRange(hsv, lower, upper)
     
+        '''
         contours = c.findContours(mask, 1,c.CHAIN_APPROX_NONE)
 
         if len(contours) > 0:
@@ -45,7 +46,7 @@ def linefollower():
 
                 if cont_x < 230 and cont_x > 250 and cont_y > 180:
                     down()
-
+        '''
 
         c.imshow('frame', frame)
         c.imshow('mask', mask)
@@ -63,3 +64,5 @@ def task2start():
 def task2stop():
 
     stop()
+
+linefollower()
