@@ -28,13 +28,14 @@ for image in images:
      
     if success == True:
 
-      object_points.append(object_points_3D)
-      corners_2 = cv2.cornerSubPix(gray, corners, (11,11), (-1,-1), criteria)       
-      image_points.append(corners_2)
-      cv2.drawChessboardCorners(image, (nY, nX), corners_2, success)
+        object_points.append(object_points_3D)
+        corners_2 = cv2.cornerSubPix(gray, corners, (11,11), (-1,-1), criteria)       
+        image_points.append(corners_2)
+        cv2.drawChessboardCorners(image, (nY, nX), corners_2, success)
 
-      cv2.imshow("Image", image) 
-      cv2.waitKey(200) 
+        cv2.imshow("Image", image) 
+        cv2.waitKey(200)
+        cv2.destroyAllWindows
 
 for image_2 in images:
 
@@ -49,10 +50,12 @@ for image_2 in images:
     undistorted_image = undistorted_image[y:y+h, x:x+w]
 
     cv2.imshow("undistorted", undistorted_image) 
-    cv2.waitKey(200) 
+    cv2.waitKey(150)
 
 calib_result_pickle = {}
 calib_result_pickle["mtx"] = mtx
+calib_result_pickle["optimal_camera_matrix"] = optimal_camera_matrix
+calib_result_pickle["roi"] = roi
 calib_result_pickle["dist"] = dist
 calib_result_pickle["rvecs"] = rvecs
 calib_result_pickle["tvecs"] = tvecs

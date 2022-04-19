@@ -1,6 +1,12 @@
 import cv2
-
 import numpy as np
+import pickle
+
+calib_result_pickle = pickle.load(open("camera_calib_pickle.p", "rb" ))
+mtx = calib_result_pickle["mtx"]
+optimal_camera_matrix = calib_result_pickle["optimal_camera_matrix"]
+dist = calib_result_pickle["dist"]
+roi = calib_result_pickle["roi"]
 
 kernel = np.ones((7,7), np.uint8)
 cm_offset = 0
@@ -28,9 +34,12 @@ if (cap.isOpened()== False):
 while(cap.isOpened()):
 
   # Capture frame-by-frame
-
+  
   ret, img_orig = cap.read()
   img_orig = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
+
+  x, y, w, h = roi
+  img_orig = img_orig[y:y+h, x:x+w]
 
   if ret == True:
 
@@ -71,11 +80,6 @@ while(cap.isOpened()):
   else:
 
     break
-
- 
-
-# When everything done, release the video capture object
-
+  
 cap.release()
-# Closes all the frames
 cv2.destroyAllWindows()
