@@ -3,6 +3,7 @@ import numpy as np
 import pickle
 
 kernel = np.ones((3,3), np.uint8)
+blur_coefficient = (5,5)
 cm_offset = 0
 pixel_offset = 0
 
@@ -21,17 +22,17 @@ if (cap.isOpened()== False):
 while(cap.isOpened()):
 
   ret, img_orig = cap.read()
-  img_orig = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
+  undistorted_img = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
 
   x, y, w, h = roi
-  img_orig = img_orig[y:y+h, x:x+w]
+  img_orig = undistorted_img[y:y+h, x:x+w]
 
   if ret == True:
 
     wreck = img_orig.copy()
 
     gray = cv2.cvtColor(wreck, cv2.COLOR_BGR2GRAY)
-    blur = cv2.GaussianBlur(gray, (5, 5), 0)
+    blur = cv2.GaussianBlur(gray, blur_coefficient, 0)
     thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
     img_erode = cv2.erode(thresh, kernel, iterations=1)
 
@@ -43,8 +44,9 @@ while(cap.isOpened()):
     cv2.putText(wreck, "length={} cm".format(length), (x,y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (36,255,12), 2)
     
     cv2.imshow("Wreck", wreck)
-    cv2.imshow("Thresholded", thresh)
-    cv2.imshow("Eroded", img_erode)
+    #cv2.imshow("Thresholded", thresh)
+    #cv2.imshow("Eroded", img_erode)
+    #cv2.imshow("Blurred", blur)
 
     if cv2.waitKey(25) & 0xFF == ord('q'):
 
