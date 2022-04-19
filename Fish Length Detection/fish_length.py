@@ -32,7 +32,7 @@ while(cap.isOpened()):
     fish = img_orig.copy()
 
     gray = cv2.cvtColor(img_orig, cv2.COLOR_BGR2GRAY)
-    blur = cv2.GaussianBlur(gray, (7, 7), 0)
+    blur = cv2.GaussianBlur(gray, (5, 5), 0)
     thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
     img_erode = cv2.erode(thresh, kernel, iterations=1)
 
