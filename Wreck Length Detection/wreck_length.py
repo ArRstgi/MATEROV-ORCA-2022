@@ -5,12 +5,7 @@ kernel = np.ones((3,3), np.uint8)
 cm_offset = 0
 pixel_offset = 0
 
-<<<<<<< HEAD
-
-path = r'C:\Users\madha\Documents\Madhav Programming\MATEROV-ORCA-2022\Wreck Length Detection\1.jpg'
-=======
 path = r'/home/cerealkiller2527/Documents/Programming/MATEROV-ORCA-2022/Wreck Length Detection/1.jpg'
->>>>>>> 714443472a8621ffbb5a6234053aad22604e92d5
 wreck = cv2.imread(path)
 
 gray = cv2.cvtColor(wreck, cv2.COLOR_BGR2GRAY)

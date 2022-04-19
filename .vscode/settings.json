@@ -1,5 +1,6 @@
 {
     "python.linting.enabled": false,
     "C_Cpp.errorSquiggles": "Enabled",
-    "python.formatting.provider": "black"
+    "python.formatting.provider": "black",
+    "cSpell.enabled": false
 }

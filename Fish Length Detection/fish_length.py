@@ -2,28 +2,14 @@ import cv2
 
 import numpy as np
 
-<<<<<<< HEAD
-
-=======
->>>>>>> 714443472a8621ffbb5a6234053aad22604e92d5
 kernel = np.ones((7,7), np.uint8)
 cm_offset = 0
 pixel_offset = 0
 fish_ref = 11
 
-<<<<<<< HEAD
-path = r'C:\Users\madha\Documents\Madhav Programming\MATEROV-ORCA-2022\Fish Length Detection\1.jpg'
-img_orig = cv2.imread(path)
-fish = img_orig.copy()
-gray = cv2.cvtColor(img_orig, cv2.COLOR_BGR2GRAY)
-blur = cv2.GaussianBlur(gray, (7, 7), 0)
-thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
-img_erode = cv2.erode(thresh, kernel, iterations=1)
-=======
 # Create a VideoCapture object and read from input file
 
 # If the input is the camera, pass 0 instead of the video file name
->>>>>>> 714443472a8621ffbb5a6234053aad22604e92d5
 
 cap = cv2.VideoCapture(0)
 
