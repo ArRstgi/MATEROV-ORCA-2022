@@ -5,6 +5,7 @@
 import cv2  # Import the OpenCV library to enable computer vision
 import numpy as np  # Import the NumPy scientific computing library
 import glob  # Used to get retrieve files that have a specified pattern
+import pickle
 
 # Path to the image that you want to undistort
 distorted_img_filename = "distorted/chessboard_input12.jpg"
@@ -39,7 +40,7 @@ object_points_3D = object_points_3D * square_size
 def main():
 
     # Get the file path for images in the current directory
-    images = glob.glob("*.jpg")
+    images = glob.glob("*.png")
 
     # Go through each chessboard image, one by one
     for image_file in images:
@@ -108,14 +109,6 @@ def main():
     print("\n Translation Vectors:")
     print(tvecs)
 
-    calib_result_pickle = {}
-    calib_result_pickle["mtx"] = mtx
-    calib_result_pickle["optimal_camera_matrix"] = optimal_camera_matrix
-    calib_result_pickle["dist"] = dist
-    calib_result_pickle["rvecs"] = rvecs
-    calib_result_pickle["tvecs"] = tvecs
-    pickle.dump(calib_result_pickle, open("camera_calib_pickle.p", "wb"))
-
     # Save the camera calibration results.
     # Create the output file name by removing the '.jpg' part
     size = len(distorted_img_filename)
@@ -126,12 +119,6 @@ def main():
     cv2.imwrite(new_filename, undistorted_image)
     # Close all windows
     cv2.destroyAllWindows()
-    
-calib_result_pickle = {}
-calib_result_pickle["mtx"] = mtx
-calib_result_pickle["optimal_camera_matrix"] = optimal_camera_matrix
-calib_result_pickle["dist"] = dist
-calib_result_pickle["rvecs"] = rvecs
-calib_result_pickle["tvecs"] = tvecs
-pickle.dump(calib_result_pickle, open("camera_calib_pickle.p", "wb"))
+
+
 main()
