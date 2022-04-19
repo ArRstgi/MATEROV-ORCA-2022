@@ -30,6 +30,7 @@ while(cap.isOpened()):
   # Capture frame-by-frame
 
   ret, img_orig = cap.read()
+  img_orig = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
 
   if ret == True:
 
