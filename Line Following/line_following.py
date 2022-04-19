@@ -1,7 +1,7 @@
 import cv2 as c
 import numpy as n
 
-#from manual_control import down, left, right, stop, up
+from manual_control import down, left, right, stop, up
 
 cap = c.VideoCapture(0)
 cap.set(3,480)
@@ -20,7 +20,6 @@ while True:
 
     mask = c.inRange(hsv, lower, upper)
 
-    
     contours, hierarchy = c.findContours(mask, 1,c.CHAIN_APPROX_NONE)
     c.drawContours(frame, contours, -1, (0,255,0), 1)
     
@@ -48,9 +47,6 @@ while True:
             if cont_x < 230 and cont_x > 250 and cont_y > 180:
                 down()
             '''
-            
-    
-
     c.imshow('frame', frame)
     c.imshow('mask', mask)
 
