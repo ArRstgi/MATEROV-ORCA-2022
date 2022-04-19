@@ -2,18 +2,17 @@ import cv2
 import numpy as np
 import glob
 import pickle
-
-object_points = []
-image_points = []
-
-path = r'C:\Users\madha\Documents\Programming\MATEROV-ORCA-2022\Camera Calibration\images\*.png'
-images = glob.glob(path)
-
 number_of_squares_X = 10
 number_of_squares_Y = 7
 nX = number_of_squares_X - 1
 nY = number_of_squares_Y - 1
 square_size = 0.023
+
+path = r'C:\Users\madha\Documents\Programming\MATEROV-ORCA-2022\Camera Calibration\images\*.png'
+images = glob.glob(path)
+
+object_points = []
+image_points = []
 
 criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 object_points_3D = np.zeros((nX * nY, 3), np.float32)                                               
