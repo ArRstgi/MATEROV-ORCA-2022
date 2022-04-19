@@ -2,39 +2,25 @@ import cv2
 import numpy as np
 import pickle
 
+kernel = np.ones((7,7), np.uint8)
+cm_offset = 0
+pixel_offset = 0
+fish_ref = 11
+
 calib_result_pickle = pickle.load(open("camera_calib_pickle.p", "rb" ))
 mtx = calib_result_pickle["mtx"]
 optimal_camera_matrix = calib_result_pickle["optimal_camera_matrix"]
 dist = calib_result_pickle["dist"]
 roi = calib_result_pickle["roi"]
 
-kernel = np.ones((7,7), np.uint8)
-cm_offset = 0
-pixel_offset = 0
-fish_ref = 11
-
-# Create a VideoCapture object and read from input file
-
-# If the input is the camera, pass 0 instead of the video file name
-
 cap = cv2.VideoCapture(0)
-
- 
-
-# Check if camera opened successfully
 
 if (cap.isOpened()== False):
 
   print("Error opening video stream or file")
 
- 
-
-# Read until video is completed
-
 while(cap.isOpened()):
 
-  # Capture frame-by-frame
-  
   ret, img_orig = cap.read()
   img_orig = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
 
@@ -42,11 +28,6 @@ while(cap.isOpened()):
   img_orig = img_orig[y:y+h, x:x+w]
 
   if ret == True:
-
- 
-
-    # Display the resulting frame
-
 
     fish = img_orig.copy()
 
@@ -66,16 +47,9 @@ while(cap.isOpened()):
     cv2.imshow("Thresholded", thresh)
     cv2.imshow("Eroded", img_erode)
 
- 
-
-    # Press Q on keyboard to  exit
-
     if cv2.waitKey(25) & 0xFF == ord('q'):
 
       break
-
- 
-  # Break the loop
 
   else:
 
