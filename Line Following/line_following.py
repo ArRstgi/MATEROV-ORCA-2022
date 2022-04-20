@@ -1,7 +1,14 @@
 import cv2 as c
 import numpy as n
+import pickle
 
 from manual_control import down, left, right, stop, up
+
+calib_result_pickle = pickle.load(open("camera_calib_pickle.p", "rb" ))
+mtx = calib_result_pickle["mtx"]
+optimal_camera_matrix = calib_result_pickle["optimal_camera_matrix"]
+dist = calib_result_pickle["dist"]
+roi = calib_result_pickle["roi"]
 
 cap = c.VideoCapture(0)
 cap.set(3,480)
@@ -9,7 +16,11 @@ cap.set(4,360)
 
 while True:
 
-    ret,frame = cap.read()
+    ret, frame = cap.read()
+    undistorted_img = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
+
+    x, y, w, h = roi
+    img_orig = undistorted_img[y:y+h, x:x+w]
     
     hsv = c.cvtColor(frame, c.COLOR_BGR2HSV)
     #lower = n.array([354, 3.9, 99.6])
