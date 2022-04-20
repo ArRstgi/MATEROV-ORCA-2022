@@ -7,6 +7,8 @@ blur_coefficient = (5,5)
 cm_offset = 0
 pixel_offset = 0
 fish_ref = 11
+x_crop = 250
+y_crop = 0
 
 calib_result_pickle = pickle.load(open("camera_calib_pickle.p", "rb" ))
 mtx = calib_result_pickle["mtx"]
@@ -27,7 +29,10 @@ while(cap.isOpened()):
 
   x, y, w, h = roi
   rand_img = undistorted_img[y:y+h, x:x+w]
-  img_orig = rand_img[250:1419, 0:640]
+  img_dimensions = rand_img.shape
+  img_crop_x = img_dimensions[1]-x_crop
+  img_crop_y = img_dimensions[2]-y_crop
+  img_orig = rand_img[x_crop:img_crop_x, y_crop:img_crop_y]
 
   if ret == True:
 
@@ -40,7 +45,7 @@ while(cap.isOpened()):
 
     x,y,w,h = cv2.boundingRect(img_erode)
     #length = (fish_ref*(w+(offset*w/25))/h)
-    length = ((fish_ref*w)/(h+pixel_offset)) + cm_offset
+    length = ((fish_ref*w)/(h+pixel_offset))+cm_offset
     length = round(length,2)
     cv2.rectangle(fish, (x,y), (x+w,y+h), (237, 59, 59), 2)
     cv2.putText(fish, "length={} cm".format(length), (x,y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (36,255,12), 2)
