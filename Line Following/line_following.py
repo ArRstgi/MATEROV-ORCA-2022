@@ -17,13 +17,10 @@ cap.set(4,360)
 while True:
 
     ret, frame = cap.read()
-    undistorted_img = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
+    undistorted_img = c.undistort(frame, mtx, dist, None, optimal_camera_matrix)
 
     x, y, w, h = roi
     frame = undistorted_img[y:y+h, x:x+w]
-    
-    frame.set(3,480)
-    frame.set(4,360)
 
     hsv = c.cvtColor(frame, c.COLOR_BGR2HSV)
     #lower = n.array([354, 3.9, 99.6])
