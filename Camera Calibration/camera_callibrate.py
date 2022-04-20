@@ -33,6 +33,7 @@ for image in images:
         cv2.drawChessboardCorners(image, (nY, nX), corners_2, success)
 
         cv2.imshow("Image", image) 
+        cv2.imwrite("hmm.jpg", image)
         cv2.waitKey(200)
         cv2.destroyAllWindows
 
@@ -48,21 +49,9 @@ for image_2 in images:
     x, y, w, h = roi
     undistorted_image = undistorted_image[y:y+h, x:x+w]
 
-    cv2.imshow("Undistorted", undistorted_image) 
+    cv2.imshow("undistorted", undistorted_image) 
     cv2.waitKey(150)
-'''
-distorted_image_2 = cv2.imread(images[3])
 
-ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(object_points, image_points, gray.shape[::-1], None, None)
-height, width = distorted_image_2.shape[:2]
-optimal_camera_matrix, roi = cv2.getOptimalNewCameraMatrix(mtx, dist, (width,height), 1, (width,height))
-undistorted_image_2 = cv2.undistort(distorted_image_2, mtx, dist, None, optimal_camera_matrix)
-
-x, y, w, h = roi
-hmm = undistorted_image_2[y:y+h, x:x+w]
-
-cv2.imwrite('undistorted_image_2.jpg',hmm)
-'''
 calib_result_pickle = {}
 calib_result_pickle["mtx"] = mtx
 calib_result_pickle["optimal_camera_matrix"] = optimal_camera_matrix
