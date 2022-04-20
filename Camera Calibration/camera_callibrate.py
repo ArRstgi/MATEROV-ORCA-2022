@@ -2,6 +2,7 @@ import cv2
 import numpy as np
 import glob
 import pickle
+
 number_of_squares_X = 10
 number_of_squares_Y = 7
 nX = number_of_squares_X - 1
