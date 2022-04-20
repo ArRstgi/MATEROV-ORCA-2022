@@ -30,12 +30,11 @@ while(cap.isOpened()):
   x, y, w, h = roi
   rand_img = undistorted_img[y:y+h, x:x+w]
 
-  img_dimensions = rand_img.shape
-  img_crop_x = img_dimensions[1]-x_crop
-  img_crop_y = img_dimensions[2]-y_crop
-  print(img_dimensions)
-  img_orig = rand_img[x_crop:img_crop_x, y_crop:img_crop_y]
-
+  y_2, x_2 ,z_2 = rand_img.shape
+  img_crop_y = y_2-y_crop
+  img_crop_x = x_2-x_crop
+  img_orig = rand_img[y_crop:img_crop_y, x_crop:img_crop_x]
+  
   if ret == True:
 
     fish = img_orig.copy()

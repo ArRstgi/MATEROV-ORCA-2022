@@ -3,7 +3,7 @@ from tkinter import Tk, Canvas, Button, PhotoImage
 
 #from manual_control import task1start, task1stop
 #from task2 import task2start, task2stop
-from task3 import takescreenshot, makemosaic, task3stop
+from Photomosaic.photomosaic import takescreenshot, makemosaic, task3stop
 
 def fullgui():
 
