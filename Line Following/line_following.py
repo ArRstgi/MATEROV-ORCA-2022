@@ -20,8 +20,11 @@ while True:
     undistorted_img = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
 
     x, y, w, h = roi
-    img_orig = undistorted_img[y:y+h, x:x+w]
+    frame = undistorted_img[y:y+h, x:x+w]
     
+    frame.set(3,480)
+    frame.set(4,360)
+
     hsv = c.cvtColor(frame, c.COLOR_BGR2HSV)
     #lower = n.array([354, 3.9, 99.6])
     #upper = n.array([348, 83.3, 2.4])
