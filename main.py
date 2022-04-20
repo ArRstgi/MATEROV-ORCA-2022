@@ -1,4 +1,4 @@
-from build.gui import fullgui
+from gui_final import fullgui
 
 def main():
 

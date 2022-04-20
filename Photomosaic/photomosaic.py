@@ -2,33 +2,162 @@ from multiprocessing import Process
 import cv2 as c
 import numpy as n
 
-def takescreenshot():
+def ss1():
 
     cap = c.VideoCapture(0)
     cap.set(3,480)
     cap.set(4,360)
-
-    icount = 0
 
     while True:
         ret, frame = cap.read()
 
         c.imshow('frame', frame)
 
-        if c.waitKey(1) == ord('x'):
+        if c.waitKey(1) == ord('q'):
             break
-
-        elif c.waitKey(1) == ord('s'):
-            imgname = '{}.png'.format(icount)                        
-            c.imwrite(imgname,frame)
-            icount += 1
-
+                       
+        c.imwrite('0.png',frame)
+        
     cap.release()
-    c.destroyAllWindows()            
+    c.destroyAllWindows()
+
+def ss2():
+
+    cap = c.VideoCapture(0)
+    cap.set(3,480)
+    cap.set(4,360)
+
+    while True:
+        ret, frame = cap.read()
+
+        c.imshow('frame', frame)
+
+        if c.waitKey(1) == ord('q'):
+            break
+                       
+        c.imwrite('1.png',frame)
+        
+    cap.release()
+    c.destroyAllWindows()
+
+def ss3():
+
+    cap = c.VideoCapture(0)
+    cap.set(3,480)
+    cap.set(4,360)
+
+    while True:
+        ret, frame = cap.read()
+
+        c.imshow('frame', frame)
+
+        if c.waitKey(1) == ord('q'):
+            break
+                       
+        c.imwrite('2.png',frame)
+        
+    cap.release()
+    c.destroyAllWindows()
+
+def ss4():
+
+    cap = c.VideoCapture(0)
+    cap.set(3,480)
+    cap.set(4,360)
+
+    while True:
+        ret, frame = cap.read()
+
+        c.imshow('frame', frame)
+
+        if c.waitKey(1) == ord('q'):
+            break
+                       
+        c.imwrite('3.png',frame)
+        
+    cap.release()
+    c.destroyAllWindows()
+
+def ss5():
+
+    cap = c.VideoCapture(0)
+    cap.set(3,480)
+    cap.set(4,360)
+
+    while True:
+        ret, frame = cap.read()
+
+        c.imshow('frame', frame)
+
+        if c.waitKey(1) == ord('q'):
+            break
+                       
+        c.imwrite('4.png',frame)
+        
+    cap.release()
+    c.destroyAllWindows()
+
+def ss6():
+
+    cap = c.VideoCapture(0)
+    cap.set(3,480)
+    cap.set(4,360)
+
+    while True:
+        ret, frame = cap.read()
+
+        c.imshow('frame', frame)
+
+        if c.waitKey(1) == ord('q'):
+            break
+                       
+        c.imwrite('5.png',frame)
+        
+    cap.release()
+    c.destroyAllWindows()
+
+def ss7():
+
+    cap = c.VideoCapture(0)
+    cap.set(3,480)
+    cap.set(4,360)
+
+    while True:
+        ret, frame = cap.read()
+
+        c.imshow('frame', frame)
+
+        if c.waitKey(1) == ord('q'):
+            break
+                       
+        c.imwrite('6.png',frame)
+        
+    cap.release()
+    c.destroyAllWindows()
+
+def ss8():
+
+    cap = c.VideoCapture(0)
+    cap.set(3,480)
+    cap.set(4,360)
+
+    while True:
+        ret, frame = cap.read()
+
+        c.imshow('frame', frame)
+
+        if c.waitKey(1) == ord('q'):
+            break
+                       
+        c.imwrite('7.png',frame)
+        
+    cap.release()
+    c.destroyAllWindows()
 
 
 
 def makemosaic():
+    
     i1 = c.imread('0.png')
     i2 = c.imread('1.png')
     i3 = c.imread('2.png')
@@ -59,11 +188,8 @@ def makemosaic():
 
 
 def task3stop():
-        p1 = Process(target=takescreenshot)
-        p2 = Process(target=makemosaic)
+        p1 = Process(target=makemosaic)
         p1.terminate()
-        p2.terminate()
-
 
 
 
