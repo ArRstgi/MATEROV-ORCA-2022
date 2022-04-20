@@ -6,6 +6,8 @@ kernel = np.ones((3,3), np.uint8)
 blur_coefficient = (5,5)
 cm_offset = 0
 pixel_offset = 0
+x_crop = 250
+y_crop = 0
 
 calib_result_pickle = pickle.load(open("camera_calib_pickle.p", "rb" ))
 mtx = calib_result_pickle["mtx"]
@@ -24,9 +26,15 @@ while(cap.isOpened()):
   ret, img_orig = cap.read()
   undistorted_img = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
 
-  x, y, w, h = roi
-  rand_img = undistorted_img[y:y+h, x:x+w]
-  img_orig = rand_img[250:1419, 0:640]
+  y_2, x_2 ,z_2 = rand_img.shape
+  '''
+  print(y_2)
+  print(x_2)
+  print(z_2)
+  '''
+  img_crop_y = y_2-y_crop
+  img_crop_x = x_2-x_crop
+  img_orig = rand_img[y_crop:img_crop_y, x_crop:img_crop_x]
 
   if ret == True:
 
@@ -38,8 +46,8 @@ while(cap.isOpened()):
     img_erode = cv2.erode(thresh, kernel, iterations=1)
 
     x,y,w,h = cv2.boundingRect(img_erode)
-   #length = (25*(w+(pixel_offset*(w/25)))/h) + cm_offset
-    length = ((25*w)/(h+pixel_offset)) + cm_offset
+   #length = (25*(w+(pixel_offset*(w/25)))/h)+cm_offset
+    length = ((25*w)/(h+pixel_offset))+cm_offset
     length = round(length,2)
     cv2.rectangle(wreck, (x,y), (x+w, y+h), (36,255,12), 2)
     cv2.putText(wreck, "length={} cm".format(length), (x,y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (36,255,12), 2)

@@ -31,9 +31,14 @@ while(cap.isOpened()):
   rand_img = undistorted_img[y:y+h, x:x+w]
 
   y_2, x_2 ,z_2 = rand_img.shape
+  '''
+  print(y_2)
+  print(x_2)
+  print(z_2)
+  '''
   img_crop_y = y_2-y_crop
   img_crop_x = x_2-x_crop
-  img_orig = rand_img[y_crop:img_crop_y, x_crop:img_crop_x]
+  img_orig = rand_img[x_crop:img_crop_x, y_crop:img_crop_y]
   
   if ret == True:
 
@@ -45,11 +50,11 @@ while(cap.isOpened()):
     img_erode = cv2.erode(thresh, kernel, iterations=1)
 
     x,y,w,h = cv2.boundingRect(img_erode)
-    #length = (fish_ref*(w+(offset*w/25))/h)
+    #length = (25*(w+(pixel_offset*(w/fish_ref)))/h)+cm_offset
     length = ((fish_ref*w)/(h+pixel_offset))+cm_offset
     length = round(length,2)
     cv2.rectangle(fish, (x,y), (x+w,y+h), (237, 59, 59), 2)
-    cv2.putText(fish, "length={} cm".format(length), (x,y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (36,255,12), 2)
+    cv2.putText(fish, "length={} cm".format(w), (x,y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (36,255,12), 2)
 
     cv2.imshow("Fish", fish)
     #cv2.imshow("Thresholded", thresh)
