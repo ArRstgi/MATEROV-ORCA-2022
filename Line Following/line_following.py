@@ -45,7 +45,7 @@ while True:
             cont_x = int(momnts['m10']/momnts['m00'])
             cont_y = int(momnts['m01']/momnts['m00'])
             c.circle(frame, (cont_x,cont_y), 5, (255,255,255), -1)
-            '''
+
             if cont_y >= 190:
                 up()
             
@@ -60,7 +60,7 @@ while True:
 
             if cont_x < 230 and cont_x > 250 and cont_y > 180:
                 down()
-            '''
+
     c.imshow('frame', frame)
     c.imshow('mask', mask)
 
