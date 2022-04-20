@@ -25,7 +25,8 @@ while(cap.isOpened()):
   undistorted_img = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
 
   x, y, w, h = roi
-  img_orig = undistorted_img[y:y+h, x:x+w]
+  rand_orig = undistorted_img[y:y+h, x:x+w]
+  img_orig = rand_img[250:1419, 0:640]
 
   if ret == True:
 

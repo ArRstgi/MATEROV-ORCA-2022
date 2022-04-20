@@ -51,6 +51,20 @@ for image_2 in images:
     cv2.imshow("undistorted", undistorted_image) 
     cv2.waitKey(150)
 
+'''
+distorted_image_2 = cv2.imread(images[3])
+
+ret, mtx, dist, rvecs, tvecs = cv2.calibrateCamera(object_points, image_points, gray.shape[::-1], None, None)
+height, width = distorted_image2.shape[:2]
+optimal_camera_matrix, roi = cv2.getOptimalNewCameraMatrix(mtx, dist, (width,height), 1, (width,height))
+undistorted_image_2 = cv2.undistort(distorted_image_2, mtx, dist, None, optimal_camera_matrix)
+
+x, y, w, h = roi
+undistorted_image_2 = undistorted_image_2[y:y+h, x:x+w]
+
+cv2.imwrite('undistorted_image_2.jpg',undistorted_image_2)
+'''
+
 calib_result_pickle = {}
 calib_result_pickle["mtx"] = mtx
 calib_result_pickle["optimal_camera_matrix"] = optimal_camera_matrix
