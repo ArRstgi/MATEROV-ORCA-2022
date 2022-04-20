@@ -4,6 +4,8 @@ import pickle
 
 from manual_control import down, left, right, stop, up
 
+x_crop = 250
+y_crop = 0
 calib_result_pickle = pickle.load(open("camera_calib_pickle.p", "rb" ))
 mtx = calib_result_pickle["mtx"]
 optimal_camera_matrix = calib_result_pickle["optimal_camera_matrix"]
@@ -21,6 +23,11 @@ while True:
 
     x, y, w, h = roi
     frame = undistorted_img[y:y+h, x:x+w]
+
+    y_2, x_2 ,z_2 = frame.shape
+    img_crop_y = y_2-y_crop
+    img_crop_x = x_2-x_crop
+    frame = frame[y_crop:img_crop_y, x_crop:img_crop_x]
 
     hsv = c.cvtColor(frame, c.COLOR_BGR2HSV)
     #lower = n.array([354, 3.9, 99.6])
