@@ -1,10 +1,9 @@
-from site import removeduppaths
 import tkinter as tk
 import tkinter.font as tkFont
 
-from Docking.docking import docking_start, docking_stop
-from Line_Following.line_following import linefollowing_stop, linefollowing
-from Photomosaic.photomosaic import makemosaic, task3stop, ss1, ss2, ss3, ss4, ss5, ss6, ss7, ss8
+from Docking.docking import docking_start
+from Line_Following.line_following import linefollowing
+from Photomosaic.photomosaic import makemosaic, ss1, ss2, ss3, ss4, ss5, ss6, ss7, ss8
 from Fish_Length_Detection.fish_length import detectFishLength
 from Wreck_Length_Detection.wreck_length import detectWreckLength
 from Manual.manual_control import stop
@@ -212,13 +211,13 @@ class App:
         docking_start()
 
     def T1Stop_command(self):
-        docking_stop()
+        stop()
 
     def T2Start_command(self):
         linefollowing()
 
     def T2End_command(self):
-        linefollowing_stop()
+        stop()
 
     def SS1_command(self):
         ss1()
