@@ -1,15 +1,14 @@
 from site import removeduppaths
 import tkinter as tk
 import tkinter.font as tkFont
-'''
+
 from Docking.docking import docking_start, docking_stop
 from Line_Following.line_following import linefollowing_stop, linefollowing
 from Photomosaic.photomosaic import makemosaic, task3stop, ss1, ss2, ss3, ss4, ss5, ss6, ss7, ss8
 from Fish_Length_Detection.fish_length import detectFishLength
 from Wreck_Length_Detection.wreck_length import detectWreckLength
 from Manual.manual_control import stop
-'''
-    
+
 class App:
     def __init__(self, root):
         #setting title
@@ -210,52 +209,52 @@ class App:
 
 
     def T1Start_command(self):
-        print('docking_start()')
+        docking_start()
 
     def T1Stop_command(self):
-        print('docking_stop()')
+        docking_stop()
 
     def T2Start_command(self):
-        print('linefollowing()')
+        linefollowing()
 
     def T2End_command(self):
-        print('linefollowing_stop()')
+        linefollowing_stop()
 
     def SS1_command(self):
-        print('ss1()')
+        ss1()
     
     def SS2_command(self):
-        print('ss2()')
+        ss2()
 
     def SS3_command(self):
-        print('ss3()')
+        ss3()
     
     def SS4_command(self):
-        print('ss4()')
+        ss4()
 
     def SS5_command(self):
-        print('ss5()')
+        ss5()
 
     def SS6_command(self):
-        print('ss6()')
+        ss6()
 
     def SS7_command(self):
-        print('ss7()')
+        ss7()
 
     def SS8_command(self):
-        print('ss8()')
+        ss8()
 
     def T3MakeMosaic_command(self):
-        print('makemosaic()')
+        makemosaic()
 
     def T3Stop_command(self):
-        print('stop()')
+        stop()
 
     def fishLength_command(self):
-        print('detectFishLength()')
+        detectFishLength()
 
     def wreckLength_command(self):
-        print('detectWreckLength()')
+        detectWreckLength()
 
 if __name__ == '__main__':
     root = tk.Tk()
