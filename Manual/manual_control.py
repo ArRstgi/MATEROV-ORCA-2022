@@ -1,6 +1,4 @@
 from pymavlink import mavutil
-from multiprocessing import Process
-import cv2 as c
 
 master = mavutil.mavlink_connection('udpin:0.0.0.0:14550')
 master.wait_heartbeat()
@@ -37,8 +35,6 @@ def left():
 
     set_rc_channel_pwm(6,1300)
 
-cap = c.VideoCapture(0)
-ret, frame = cap.read()
 
 
 

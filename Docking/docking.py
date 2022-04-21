@@ -1,8 +1,13 @@
-from pymavlink import mavutil
 from multiprocessing import Process
 import time
+from pymavlink import mavutil
 
-from Manual.manual_control import forward, stop
+
+master = mavutil.mavlink_connection('udpin:192.168.2.1:14550')
+master.wait_heartbeat()
+
+def forward():
+    master.mav.manual_control_send(master.target_system, 500, 0, 0, 0, 0)
 
 def docking_start(): 
     
@@ -11,9 +16,4 @@ def docking_start():
     time.sleep(1)
     p.terminate()
 
-def docking_stop():
-
-    p = Process(target=stop)
-    p.start()
-    time.sleep(1)
-    p.terminate()
+docking_start()
