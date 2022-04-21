@@ -3,7 +3,7 @@ import cv2 as c
 import numpy as n
 import pickle
 
-from manual.manual_control import down, left, right, stop, up
+from Manual.manual_control import down, left, right, stop, up
 
 def linefollowing():
 

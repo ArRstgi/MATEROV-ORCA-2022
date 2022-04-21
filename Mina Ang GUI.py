@@ -1,12 +1,13 @@
 import tkinter as tk
 import tkinter.font as tkFont
 
-from Docking.docking import docking_start
-from Line_Following.line_following import linefollowing
-from Photomosaic.photomosaic import makemosaic, ss1, ss2, ss3, ss4, ss5, ss6, ss7, ss8
-from Fish_Length_Detection.fish_length import detectFishLength
-from Wreck_Length_Detection.wreck_length import detectWreckLength
-from Manual.manual_control import stop
+
+#from Docking.docking import docking_start
+#from Line_Following.line_following import linefollowing
+#from Fish_Length_Detection.fish_length import detectFishLength
+#from Wreck_Length_Detection.wreck_length import detectWreckLength
+#from Manual.manual_control import stop
+from Photomosaic.photomosaic import makemosaic, takeScreenshot
 
 class App:
     def __init__(self, root):
@@ -86,26 +87,6 @@ class App:
         Task3["text"] = "Task 3"
         Task3.place(x=400,y=70,width=70,height=25)
 
-        SS2=tk.Button(root)
-        SS2["bg"] = "#c0c0c0"
-        ft = tkFont.Font(family='Times',size=10)
-        SS2["font"] = ft
-        SS2["fg"] = "#000000"
-        SS2["justify"] = "center"
-        SS2["text"] = "SS 2"
-        SS2.place(x=360,y=100,width=70,height=25)
-        SS2["command"] = self.SS2_command
-
-        SS1=tk.Button(root)
-        SS1["bg"] = "#c0c0c0"
-        ft = tkFont.Font(family='Times',size=10)
-        SS1["font"] = ft
-        SS1["fg"] = "#000000"
-        SS1["justify"] = "center"
-        SS1["text"] = "SS 1"
-        SS1.place(x=280,y=100,width=70,height=25)
-        SS1["command"] = self.SS1_command
-
         T3MakeMosaic=tk.Button(root)
         T3MakeMosaic["bg"] = "#c0c0c0"
         ft = tkFont.Font(family='Times',size=10)
@@ -116,16 +97,6 @@ class App:
         T3MakeMosaic.place(x=310,y=180,width=85,height=52)
         T3MakeMosaic["command"] = self.T3MakeMosaic_command
 
-        SS7=tk.Button(root)
-        SS7["bg"] = "#c0c0c0"
-        ft = tkFont.Font(family='Times',size=10)
-        SS7["font"] = ft
-        SS7["fg"] = "#000000"
-        SS7["justify"] = "center"
-        SS7["text"] = "SS 6"
-        SS7.place(x=360,y=140,width=70,height=25)
-        SS7["command"] = self.SS7_command
-
         T3Stop=tk.Button(root)
         T3Stop["bg"] = "#c0c0c0"
         ft = tkFont.Font(family='Times',size=10)
@@ -135,56 +106,6 @@ class App:
         T3Stop["text"] = "STOP"
         T3Stop.place(x=440,y=180,width=89,height=52)
         T3Stop["command"] = self.T3Stop_command
-
-        SS7=tk.Button(root)
-        SS7["bg"] = "#c0c0c0"
-        ft = tkFont.Font(family='Times',size=10)
-        SS7["font"] = ft
-        SS7["fg"] = "#000000"
-        SS7["justify"] = "center"
-        SS7["text"] = "SS 7"
-        SS7.place(x=440,y=140,width=70,height=25)
-        SS7["command"] = self.SS7_command
-
-        SS8=tk.Button(root)
-        SS8["bg"] = "#c0c0c0"
-        ft = tkFont.Font(family='Times',size=10)
-        SS8["font"] = ft
-        SS8["fg"] = "#000000"
-        SS8["justify"] = "center"
-        SS8["text"] = "SS 8"
-        SS8.place(x=520,y=140,width=70,height=25)
-        SS8["command"] = self.SS8_command
-
-        SS4=tk.Button(root)
-        SS4["bg"] = "#c0c0c0"
-        ft = tkFont.Font(family='Times',size=10)
-        SS4["font"] = ft
-        SS4["fg"] = "#000000"
-        SS4["justify"] = "center"
-        SS4["text"] = "SS 4"
-        SS4.place(x=520,y=100,width=70,height=25)
-        SS4["command"] = self.SS4_command
-
-        SS3=tk.Button(root)
-        SS3["bg"] = "#c0c0c0"
-        ft = tkFont.Font(family='Times',size=10)
-        SS3["font"] = ft
-        SS3["fg"] = "#000000"
-        SS3["justify"] = "center"
-        SS3["text"] = "SS 3"
-        SS3.place(x=440,y=100,width=70,height=25)
-        SS3["command"] = self.SS3_command
-
-        SS5=tk.Button(root)
-        SS5["bg"] = "#c0c0c0"
-        ft = tkFont.Font(family='Times',size=10)
-        SS5["font"] = ft
-        SS5["fg"] = "#000000"
-        SS5["justify"] = "center"
-        SS5["text"] = "SS 5"
-        SS5.place(x=280,y=140,width=70,height=25)
-        SS5["command"] = self.SS5_command
 
         fishLength=tk.Button(root)
         fishLength["bg"] = "#efefef"
@@ -206,6 +127,16 @@ class App:
         wreckLength.place(x=330,y=250,width=70,height=25)
         wreckLength["command"] = self.wreckLength_command
 
+        bottomCamera=tk.Button(root)
+        bottomCamera["bg"] = "#efefef"
+        ft = tkFont.Font(family='Times',size=10)
+        bottomCamera["font"] = ft
+        bottomCamera["fg"] = "#000000"
+        bottomCamera["justify"] = "center"
+        bottomCamera["text"] = "Bottom Cam"
+        bottomCamera.place(x=450,y=250,width=70,height=25)
+        bottomCamera["command"] = self.bottomCamera_command
+
 
     def T1Start_command(self):
         docking_start()
@@ -219,30 +150,6 @@ class App:
     def T2End_command(self):
         stop()
 
-    def SS1_command(self):
-        ss1()
-    
-    def SS2_command(self):
-        ss2()
-
-    def SS3_command(self):
-        ss3()
-    
-    def SS4_command(self):
-        ss4()
-
-    def SS5_command(self):
-        ss5()
-
-    def SS6_command(self):
-        ss6()
-
-    def SS7_command(self):
-        ss7()
-
-    def SS8_command(self):
-        ss8()
-
     def T3MakeMosaic_command(self):
         makemosaic()
 
@@ -254,6 +161,9 @@ class App:
 
     def wreckLength_command(self):
         detectWreckLength()
+
+    def bottomCamera_command(self):
+        takeScreenshot()
 
 if __name__ == '__main__':
     root = tk.Tk()
