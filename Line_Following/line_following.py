@@ -3,7 +3,7 @@ import cv2 as c
 import numpy as n
 import pickle
 
-from manual_control import down, left, right, stop, up
+from manual.manual_control import down, left, right, stop, up
 
 def linefollowing():
 
@@ -16,8 +16,6 @@ def linefollowing():
     roi = calib_result_pickle["roi"]
 
     cap = c.VideoCapture(0)
-    cap.set(3,480)
-    cap.set(4,360)
 
     while True:
 
@@ -77,7 +75,7 @@ def linefollowing():
     cap.release()
     c.destroyAllWindows()
 
-def task2stop():
+def linefollowing_stop():
     stop()
 
 
