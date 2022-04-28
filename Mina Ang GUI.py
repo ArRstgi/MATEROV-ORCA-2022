@@ -2,11 +2,11 @@ import tkinter as tk
 import tkinter.font as tkFont
 
 
-#from Docking.docking import docking_start
-#from Line_Following.line_following import linefollowing
-#from Fish_Length_Detection.fish_length import detectFishLength
-#from Wreck_Length_Detection.wreck_length import detectWreckLength
-#from Manual.manual_control import stop
+from Docking.docking import docking_start
+from Line_Following.line_following import linefollowing
+from Fish_Length_Detection.fish_length import detectFishLength
+from Wreck_Length_Detection.wreck_length import detectWreckLength
+from Manual.manual_control import stop
 from Photomosaic.photomosaic import makemosaic, takeScreenshot
 
 class App:
