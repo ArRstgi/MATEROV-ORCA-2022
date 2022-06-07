@@ -18,7 +18,7 @@ def detectFishLength():
   dist = calib_result_pickle["dist"]
   roi = calib_result_pickle["roi"]
 
-  cap = cv2.VideoCapture(0)
+  cap = cv2.VideoCapture(1)
 
   if (cap.isOpened()== False):
 
@@ -42,26 +42,27 @@ def detectFishLength():
     img_crop_x = x_2-x_crop
     img_orig = rand_img[x_crop:img_crop_x, y_crop:img_crop_y]
     
-    if ret == True:
+    if ret == True: 
 
       fish = img_orig.copy()
 
       gray = cv2.cvtColor(img_orig, cv2.COLOR_BGR2GRAY)
       blur = cv2.GaussianBlur(gray, blur_coefficient, 0)
-      thresh = cv2.threshold(blur, 0, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+      thresh = cv2.threshold(blur, 55, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
       img_erode = cv2.erode(thresh, kernel, iterations=1)
-
+      '''
       x,y,w,h = cv2.boundingRect(img_erode)
       #length = (25*(w+(pixel_offset*(w/fish_ref)))/h)+cm_offset
       length = ((fish_ref*w)/(h+pixel_offset))+cm_offset
       length = round(length,2)
       cv2.rectangle(fish, (x,y), (x+w,y+h), (237, 59, 59), 2)
       cv2.putText(fish, "length={} cm".format(w), (x,y-10), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (36,255,12), 2)
-
+      '''
       cv2.imshow("Fish", fish)
-      #cv2.imshow("Thresholded", thresh)
-      #cv2.imshow("Eroded", img_erode)
-      #cv2.imshow("Blurred", blur)
+      cv2.imshow("Thresholded", thresh)
+      cv2.imshow("Eroded", img_erode)
+      cv2.imshow("Blurred", blur)
+      cv2.imshow("Gray", gray)
 
       if cv2.waitKey(25) & 0xFF == ord('q'):
 
@@ -73,3 +74,5 @@ def detectFishLength():
     
   cap.release()
   cv2.destroyAllWindows()
+
+detectFishLength()

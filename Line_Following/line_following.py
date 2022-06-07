@@ -3,7 +3,7 @@ import cv2 as c
 import numpy as n
 import pickle
 
-from Manual.manual_control import down, left, right, stop, up
+#from Manual.manual_control import down, left, right, stop, up
 
 def linefollowing():
 
@@ -15,11 +15,12 @@ def linefollowing():
     dist = calib_result_pickle["dist"]
     roi = calib_result_pickle["roi"]
 
-    cap = c.VideoCapture(0)
+    cap = c.VideoCapture(1)
 
     while True:
 
         ret, frame = cap.read()
+        '''
         undistorted_img = c.undistort(frame, mtx, dist, None, optimal_camera_matrix)
 
         x, y, w, h = roi
@@ -29,7 +30,7 @@ def linefollowing():
         img_crop_y = y_2-y_crop
         img_crop_x = x_2-x_crop
         frame = frame[y_crop:img_crop_y, x_crop:img_crop_x]
-
+        '''
         hsv = c.cvtColor(frame, c.COLOR_BGR2HSV)
         #lower = n.array([354, 3.9, 99.6])
         #upper = n.array([348, 83.3, 2.4])
@@ -41,7 +42,7 @@ def linefollowing():
 
         contours, hierarchy = c.findContours(mask, 1,c.CHAIN_APPROX_NONE)
         c.drawContours(frame, contours, -1, (0,255,0), 1)
-        
+        '''
         if len(contours) > 0:
             cont = max(contours,key = c.contourArea)
             momnts = c.moments(cont)
@@ -65,7 +66,7 @@ def linefollowing():
 
                 if cont_x < 230 and cont_x > 250 and cont_y > 180:
                     down()
-
+        '''
         c.imshow('frame', frame)
         c.imshow('mask', mask)
 
@@ -75,8 +76,7 @@ def linefollowing():
     cap.release()
     c.destroyAllWindows()
 
-def linefollowing_stop():
-    stop()
+linefollowing()
 
 
 

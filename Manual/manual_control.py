@@ -1,10 +1,10 @@
 from pymavlink import mavutil
 
-master = mavutil.mavlink_connection('udpin:0.0.0.0:14550')
+master = mavutil.mavlink_connection('udpin:192.168.2.1:14770')
 master.wait_heartbeat()
 
 def forward():
-    master.mav.manual_control_send(master.target_system, 500, 0, 0, 0, 0)
+    master.mav.manual_control_send(master.target_system, 1000, 1000, 1000, 1000, 0)
 
 def stop():
     master.mav.command_long_send(master.target_system, master.target_component, mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM, 0, 0, 0, 0, 0, 0, 0, 0)
@@ -35,7 +35,7 @@ def left():
 
     set_rc_channel_pwm(6,1300)
 
-
+forward()
 
 
 

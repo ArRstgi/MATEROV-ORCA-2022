@@ -1,5 +1,4 @@
 from multiprocessing import Process
-from tkinter import Frame
 import cv2 as c
 import numpy as n
 
@@ -18,28 +17,28 @@ def takeScreenshot():
             break
         
         elif c.waitKey(1) == ord('1'):
-            c.imwrite('0.png',frame)
+            c.imwrite('1.jpg',frame)
 
         elif c.waitKey(1) == ord('2'):
-            c.imwrite('1.png',frame)
+            c.imwrite('2.jpg',frame)
         
         elif c.waitKey(1) == ord('3'):
-            c.imwrite('2.png',frame)
+            c.imwrite('3.jpg',frame)
         
         elif c.waitKey(1) == ord('4'):
-            c.imwrite('3.png',frame)
+            c.imwrite('4.jpg',frame)
         
         elif c.waitKey(1) == ord('5'):
-            c.imwrite('4.png',frame)
+            c.imwrite('5.jpg',frame)
         
         elif c.waitKey(1) == ord('6'):
-            c.imwrite('5.png',frame)
-        
+            c.imwrite('6.jpg',frame)
+
         elif c.waitKey(1) == ord('7'):
-            c.imwrite('6.png',frame)
+            c.imwrite('7.jpg',frame)
         
         elif c.waitKey(1) == ord('8'):
-            c.imwrite('7.png',frame)
+            c.imwrite('8.jpg',frame)
 
     cap.release()
     c.destroyAllWindows()
@@ -48,15 +47,16 @@ def takeScreenshot():
 
 def makemosaic():
     
-    i1 = c.imread('0.png')
-    i2 = c.imread('1.png')
-    i3 = c.imread('2.png')
-    i4 = c.imread('3.png')
-    i5 = c.imread('4.png')
-    i6 = c.imread('5.png')
-    i7 = c.imread('6.png')
-    i8 = c.imread('7.png')
+    i1 = c.imread('A1.jpg')
+    i2 = c.imread('A2.jpg')
+    i3 = c.imread('A3.jpg')
+    i4 = c.imread('A4.jpg')
+    i5 = c.imread('A5.jpg')
+    i6 = c.imread('A6.jpg')
+    i7 = c.imread('A7.jpg')
+    i8 = c.imread('A8.jpg')
 
+    '''
     i1 = c.resize(i1, (100,100))
     i2 = c.resize(i2, (100,100))
     i3 = c.resize(i3, (100,100))
@@ -65,15 +65,18 @@ def makemosaic():
     i6 = c.resize(i6, (100,100))
     i7 = c.resize(i7, (100,100))
     i8 = c.resize(i8, (100,100))
-
+    '''
     photomosaic_hor1 = n.hstack([i1,i2,i3,i4])
     photomosaic_hor2 = n.hstack([i5,i6,i7,i8])
 
     photomosaic_final = n.vstack([photomosaic_hor1,photomosaic_hor2])
+
+    #image = c.imread(photomosaic_final)
 
     c.imshow("photomosaic",photomosaic_final)
 
     c.waitKey(0)
     c.destroyAllWindows()
 
+makemosaic()
 
