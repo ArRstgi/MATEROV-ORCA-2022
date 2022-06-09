@@ -5,14 +5,14 @@ Example of how to Arm and Disarm an Autopilot with pymavlink
 from pymavlink import mavutil
 
 # Create the connection
-master = mavutil.mavlink_connection('udpin:192.168.2.1:14550')
+master = mavutil.mavlink_connection('udpin:192.168.2.1:14770')
 # Wait a heartbeat before sending commands
 master.wait_heartbeat()
 
 # https://mavlink.io/en/messages/common.html#MAV_CMD_COMPONENT_ARM_DISARM
 
-# Disarm
-# master.arducopter_disarm() or:
+# Arm
+# master.arducopter_arm() or:
 master.mav.command_long_send(
     master.target_system,
     master.target_component,
@@ -20,5 +20,7 @@ master.mav.command_long_send(
     0,
     0, 0, 0, 0, 0, 0, 0)
 
-# wait until disarming confirmed
-master.motors_disarmed_wait()
+# wait until arming confirmed (can manually check with master.motors_armed())
+print("Waiting for the vehicle to disarm")
+master.motors_armed_wait()
+print('Disarmed!')

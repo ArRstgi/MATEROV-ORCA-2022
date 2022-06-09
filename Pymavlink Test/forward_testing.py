@@ -8,7 +8,7 @@ This message is able to fully replace the joystick inputs.
 from pymavlink import mavutil
 
 # Create the connection
-master = mavutil.mavlink_connection('udpin:192.168.2.1:14550')
+master = mavutil.mavlink_connection('udpin:192.168.2.1:14770')
 # Wait a heartbeat before sending commands
 master.wait_heartbeat()
 
@@ -21,9 +21,9 @@ master.wait_heartbeat()
 master.mav.manual_control_send(
     master.target_system,
     1000,
-    1000,
-    1000,
-    1000,
+    0,
+    0,
+    0,
     0)
 
 # To active button 0 (first button), 3 (fourth button) and 7 (eighth button)

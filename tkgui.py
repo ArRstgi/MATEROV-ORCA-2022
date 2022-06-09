@@ -1,12 +1,13 @@
+from email.mime import image
 import tkinter as tk
 import tkinter.font as tkFont
 
-from Photomosaic.photomosaic import makemosaic
+from photomosaic import takeScreenshot, makemosaic
 
 class App:
     def __init__(self, root):
         #setting title
-        root.title("undefined")
+        root.title("ORCA Robotics GUI")
         #setting window size
         width=828
         height=558
@@ -20,35 +21,38 @@ class App:
         ft = tkFont.Font(family='Times',size=10)
         GLabel_433["font"] = ft
         GLabel_433["fg"] = "#333333"
+        GLabel_433.config(bg = "black")
         GLabel_433["justify"] = "center"
         GLabel_433["text"] = ""
-        GLabel_433.place(x=70,y=0,width=755,height=556)
+        GLabel_433.place(x=70,y=0,width=760,height=558)
 
         GLabel_381=tk.Label(root)
         ft = tkFont.Font(family='Times',size=10)
         GLabel_381["font"] = ft
         GLabel_381["fg"] = "#333333"
+        GLabel_381.config(bg = "grey20")
         GLabel_381["justify"] = "center"
         GLabel_381["text"] = ""
-        GLabel_381.place(x=0,y=0,width=73,height=554)
+        GLabel_381.place(x=0,y=0,width=73,height=558)
 
-        lineFollower=tk.Button(root)
+        lineFollower= tk.Button(root)#, image = tk.PhotoImage(file = r"linefollower.png"))
         lineFollower["bg"] = "#efefef"
         ft = tkFont.Font(family='Times',size=10)
         lineFollower["font"] = ft
         lineFollower["fg"] = "#000000"
         lineFollower["justify"] = "center"
         lineFollower["text"] = ""
-        lineFollower.place(x=130,y=30,width=63,height=51)
+        lineFollower.place(x=130,y=30,width=66,height=65)
         lineFollower["command"] = self.lineFollower_command
 
-        GLabel_738=tk.Label(root)
+        lfText=tk.Label(root)
         ft = tkFont.Font(family='Times',size=10)
-        GLabel_738["font"] = ft
-        GLabel_738["fg"] = "#333333"
-        GLabel_738["justify"] = "center"
-        GLabel_738["text"] = "line follower"
-        GLabel_738.place(x=130,y=80,width=70,height=25)
+        lfText["font"] = ft
+        lfText["fg"] = "#ffffff"
+        lfText.config(bg = "black")
+        lfText["justify"] = "center"
+        lfText["text"] = "Line Follower"
+        lfText.place(x=135,y=100,width=64,height=10)
 
         mortDetection=tk.Button(root)
         mortDetection["bg"] = "#efefef"
@@ -57,16 +61,17 @@ class App:
         mortDetection["fg"] = "#000000"
         mortDetection["justify"] = "center"
         mortDetection["text"] = ""
-        mortDetection.place(x=260,y=30,width=57,height=49)
+        mortDetection.place(x=280,y=30,width=65,height=65)
         mortDetection["command"] = self.mortDetection_command
 
-        GLabel_861=tk.Label(root)
+        mdText=tk.Label(root)
         ft = tkFont.Font(family='Times',size=10)
-        GLabel_861["font"] = ft
-        GLabel_861["fg"] = "#333333"
-        GLabel_861["justify"] = "center"
-        GLabel_861["text"] = "mort detection"
-        GLabel_861.place(x=250,y=70,width=86,height=42)
+        mdText["font"] = ft
+        mdText["fg"] = "#ffffff"
+        mdText.config(bg = "black")
+        mdText["justify"] = "center"
+        mdText["text"] = "Mort Detection"
+        mdText.place(x=280,y=100,width=68,height=10)
 
         fishLength=tk.Button(root)
         fishLength["bg"] = "#efefef"
@@ -75,16 +80,17 @@ class App:
         fishLength["fg"] = "#000000"
         fishLength["justify"] = "center"
         fishLength["text"] = ""
-        fishLength.place(x=410,y=30,width=66,height=50)
+        fishLength.place(x=430,y=30,width=65,height=65)
         fishLength["command"] = self.fishLength_command
 
-        GLabel_90=tk.Label(root)
+        flText=tk.Label(root)
         ft = tkFont.Font(family='Times',size=10)
-        GLabel_90["font"] = ft
-        GLabel_90["fg"] = "#333333"
-        GLabel_90["justify"] = "center"
-        GLabel_90["text"] = "Fish Length"
-        GLabel_90.place(x=400,y=70,width=87,height=37)
+        flText["font"] = ft
+        flText["fg"] = "#ffffff"
+        flText.config(bg = "black")
+        flText["justify"] = "center"
+        flText["text"] = "Fish Length"
+        flText.place(x=435,y=100,width=55,height=10)
 
         wreckLength=tk.Button(root)
         wreckLength["bg"] = "#efefef"
@@ -93,16 +99,17 @@ class App:
         wreckLength["fg"] = "#000000"
         wreckLength["justify"] = "center"
         wreckLength["text"] = ""
-        wreckLength.place(x=530,y=30,width=63,height=50)
+        wreckLength.place(x=580,y=30,width=65,height=65)
         wreckLength["command"] = self.wreckLength_command
 
-        GLabel_217=tk.Label(root)
+        wlText=tk.Label(root)
         ft = tkFont.Font(family='Times',size=10)
-        GLabel_217["font"] = ft
-        GLabel_217["fg"] = "#333333"
-        GLabel_217["justify"] = "center"
-        GLabel_217["text"] = "Wreck Length"
-        GLabel_217.place(x=520,y=80,width=92,height=30)
+        wlText["font"] = ft
+        wlText["fg"] = "#ffffff"
+        wlText.config(bg = "black")
+        wlText["justify"] = "center"
+        wlText["text"] = "Wreck Length"
+        wlText.place(x=581,y=100,width=63,height=10)
 
         docking=tk.Button(root)
         docking["bg"] = "#efefef"
@@ -111,16 +118,17 @@ class App:
         docking["fg"] = "#000000"
         docking["justify"] = "center"
         docking["text"] = ""
-        docking.place(x=210,y=120,width=54,height=48)
+        docking.place(x=205,y=120,width=65,height=65)
         docking["command"] = self.docking_command
 
-        GLabel_762=tk.Label(root)
+        dText=tk.Label(root)
         ft = tkFont.Font(family='Times',size=10)
-        GLabel_762["font"] = ft
-        GLabel_762["fg"] = "#333333"
-        GLabel_762["justify"] = "center"
-        GLabel_762["text"] = "docking "
-        GLabel_762.place(x=200,y=160,width=68,height=30)
+        dText["font"] = ft
+        dText["fg"] = "#ffffff"
+        dText.config(bg = "black")
+        dText["justify"] = "center"
+        dText["text"] = "Docking "
+        dText.place(x=220,y=190,width=40,height=10)
 
         photomosaic=tk.Button(root)
         photomosaic["bg"] = "#efefef"
@@ -129,16 +137,17 @@ class App:
         photomosaic["fg"] = "#000000"
         photomosaic["justify"] = "center"
         photomosaic["text"] = ""
-        photomosaic.place(x=480,y=120,width=60,height=50)
+        photomosaic.place(x=510,y=120,width=65,height=65)
         photomosaic["command"] = self.photomosaic_command
 
-        GLabel_209=tk.Label(root)
+        pText=tk.Label(root)
         ft = tkFont.Font(family='Times',size=10)
-        GLabel_209["font"] = ft
-        GLabel_209["fg"] = "#333333"
-        GLabel_209["justify"] = "center"
-        GLabel_209["text"] = "photomosaic"
-        GLabel_209.place(x=470,y=160,width=82,height=30)
+        pText["font"] = ft
+        pText["fg"] = "#ffffff"
+        pText.config(bg = "black")
+        pText["justify"] = "center"
+        pText["text"] = "Photomosaic"
+        pText.place(x=514,y=190,width=58,height=10)
 
         startScreenshot=tk.Button(root)
         startScreenshot["bg"] = "#efefef"
@@ -147,16 +156,17 @@ class App:
         startScreenshot["fg"] = "#000000"
         startScreenshot["justify"] = "center"
         startScreenshot["text"] = ""
-        startScreenshot.place(x=340,y=120,width=56,height=48)
+        startScreenshot.place(x=360,y=120,width=65,height=65)
         startScreenshot["command"] = self.startScreenshot_command
 
-        GLabel_398=tk.Label(root)
+        ssText=tk.Label(root)
         ft = tkFont.Font(family='Times',size=10)
-        GLabel_398["font"] = ft
-        GLabel_398["fg"] = "#333333"
-        GLabel_398["justify"] = "center"
-        GLabel_398["text"] = "start screenshot"
-        GLabel_398.place(x=320,y=170,width=98,height=30)
+        ssText["font"] = ft
+        ssText["fg"] = "#ffffff"
+        ssText.config(bg = "black")
+        ssText["justify"] = "center"
+        ssText["text"] = "Start Screenshot"
+        ssText.place(x=357,y=190,width=73,height=10)
 
     def lineFollower_command(self):
         print("linefollower()")
@@ -183,7 +193,7 @@ class App:
 
 
     def startScreenshot_command(self):
-        print("takescreenshot()")
+        takeScreenshot()
 
 if __name__ == "__main__":
     root = tk.Tk()

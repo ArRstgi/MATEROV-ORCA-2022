@@ -1,12 +1,17 @@
 from re import L
-import cv2 as c
-import numpy as n
+import cv2
+import numpy as np
 import pickle
 
 #from Manual.manual_control import down, left, right, stop, up
 
 def linefollowing():
 
+    kernel = np.ones((7,7), np.uint8)
+    blur_coefficient = (5,5)
+    cm_offset = 0
+    pixel_offset = 0
+    fish_ref = 11
     x_crop = 250
     y_crop = 0
     calib_result_pickle = pickle.load(open("camera_calib_pickle.p", "rb" ))
@@ -15,13 +20,15 @@ def linefollowing():
     dist = calib_result_pickle["dist"]
     roi = calib_result_pickle["roi"]
 
-    cap = c.VideoCapture(1)
+    cap = cv2.VideoCapture(1)
 
     while True:
 
+
+        
         ret, frame = cap.read()
-        '''
-        undistorted_img = c.undistort(frame, mtx, dist, None, optimal_camera_matrix)
+        
+        undistorted_img = cv2.undistort(frame, mtx, dist, None, optimal_camera_matrix)
 
         x, y, w, h = roi
         frame = undistorted_img[y:y+h, x:x+w]
@@ -30,18 +37,51 @@ def linefollowing():
         img_crop_y = y_2-y_crop
         img_crop_x = x_2-x_crop
         frame = frame[y_crop:img_crop_y, x_crop:img_crop_x]
+        
+        hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+        #lower = np.array([175,50,20])
+        #upper = np.array([180,255,255])
+
+        #upper = np.array([0, 0, 50])
+        #lower = np.array([0,0,0])
+
+        #mask = cv2.inRange(hsv, lower, upper)
+
+        ## Gen lower mask (0-5) and upper mask (175-180) of RED
+        mask1 = cv2.inRange(hsv, (0,50,20), (5,255,255))
+        mask2 = cv2.inRange(hsv, (175,50,20), (180,255,255))
+
+        ## Merge the mask and crop the red regions
+        mask = cv2.bitwise_or(mask1, mask2 )
+        croped = cv2.bitwise_and(frame, frame, mask=mask)
+        
         '''
-        hsv = c.cvtColor(frame, c.COLOR_BGR2HSV)
-        #lower = n.array([354, 3.9, 99.6])
-        #upper = n.array([348, 83.3, 2.4])
+        ret, img_orig = cap.read()
+        undistorted_img = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
 
-        upper = n.array([0, 0, 50])
-        lower = n.array([0,0,0])
+        x, y, w, h = roi
+        rand_img = undistorted_img[y:y+h, x:x+w]
 
-        mask = c.inRange(hsv, lower, upper)
+        y_2, x_2 ,z_2 = rand_img.shape
+        '''
+        print(y_2)
+        print(x_2)
+        print(z_2)
+        '''
+        img_crop_y = y_2-y_crop
+        img_crop_x = x_2-x_crop
+        img_orig = rand_img[x_crop:img_crop_x, y_crop:img_crop_y]
+        
+        if ret == True: 
 
-        contours, hierarchy = c.findContours(mask, 1,c.CHAIN_APPROX_NONE)
-        c.drawContours(frame, contours, -1, (0,255,0), 1)
+            fish = img_orig.copy()
+
+            gray = cv2.cvtColor(img_orig, cv2.COLOR_RGB2GRAY)
+            blur = cv2.GaussianBlur(gray, blur_coefficient, 0)
+            mask = cv2.threshold(blur, 167, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
+        '''
+        contours, hierarchy = cv2.findContours(mask, 1,cv2.CHAIN_APPROX_NONE)
+        cv2.drawContours(frame, contours, -1, (0,255,0), 1)
         '''
         if len(contours) > 0:
             cont = max(contours,key = c.contourArea)
@@ -67,14 +107,15 @@ def linefollowing():
                 if cont_x < 230 and cont_x > 250 and cont_y > 180:
                     down()
         '''
-        c.imshow('frame', frame)
-        c.imshow('mask', mask)
+        cv2.imshow('frame', frame)
+        cv2.imshow('croped', croped)
+        cv2.imshow('mask', mask)
 
-        if c.waitKey(1) & 0xFF == ord('q'):
+        if cv2.waitKey(1) & 0xFF == ord('q'):
             break
 
     cap.release()
-    c.destroyAllWindows()
+    cv2.destroyAllWindows()
 
 linefollowing()
 

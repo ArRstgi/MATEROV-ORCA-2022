@@ -1,6 +1,6 @@
 from GUI.GUI import *
 import sys
-from Photomosaic.photomosaic import takeScreenshot, makemosaic
+from photomosaic import takeScreenshot, makemosaic
 
 class GUIApp(Ui_Dialog):
 

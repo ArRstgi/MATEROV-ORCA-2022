@@ -4,12 +4,11 @@ master = mavutil.mavlink_connection('udpin:192.168.2.1:14770')
 master.wait_heartbeat()
 
 def forward():
-    master.mav.manual_control_send(master.target_system, 1000, 1000, 1000, 1000, 0)
+    master.mav.manual_control_send(master.target_system, 1000, 0, 0, 0, 0)
 
 def stop():
-    master.mav.command_long_send(master.target_system, master.target_component, mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM, 0, 0, 0, 0, 0, 0, 0, 0)
+    master.mav.manual_control_send(master.target_system,  0, 0, 0, 0, 0)
     
-    master.motors_disarmed_wait()
 
 def up():
     master.mav.manual_control_send(master.target_system, 0, 0, 750, 0, 0)    
@@ -36,8 +35,6 @@ def left():
     set_rc_channel_pwm(6,1300)
 
 forward()
-
-
 
 
 

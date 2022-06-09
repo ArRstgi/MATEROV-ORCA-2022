@@ -7,7 +7,7 @@ from Line_Following.line_following import linefollowing
 from Fish_Length_Detection.fish_length import detectFishLength
 from Wreck_Length_Detection.wreck_length import detectWreckLength
 from Manual.manual_control import stop
-from Photomosaic.photomosaic import makemosaic, takeScreenshot
+from photomosaic import makemosaic, takeScreenshot
 
 class App:
     def __init__(self, root):
