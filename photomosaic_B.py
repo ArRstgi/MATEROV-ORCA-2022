@@ -24,8 +24,8 @@ def makemosaic():
     i7 = c.resize(i7, (400,400))
     i8 = c.resize(i8, (400,400))
     
-    photomosaic_hor1 = n.hstack([i3,i8,i1,i4])
-    photomosaic_hor2 = n.hstack([i7,i2,i6,i5])
+    photomosaic_hor1 = n.hstack([i8,i5,i4,i1])
+    photomosaic_hor2 = n.hstack([i6,i2,i7,i3])
 
     photomosaic_final = n.vstack([photomosaic_hor1,photomosaic_hor2])
 
