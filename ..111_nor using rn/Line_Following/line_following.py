@@ -20,7 +20,7 @@ def linefollowing():
     dist = calib_result_pickle["dist"]
     roi = calib_result_pickle["roi"]
 
-    cap = cv2.VideoCapture(1)
+    cap = cv2.VideoCapture(0)
 
     while True:
 
@@ -39,6 +39,8 @@ def linefollowing():
         frame = frame[y_crop:img_crop_y, x_crop:img_crop_x]
         
         hsv = cv2.cvtColor(frame, cv2.COLOR_BGR2HSV)
+
+        '''
         #lower = np.array([175,50,20])
         #upper = np.array([180,255,255])
 
@@ -46,40 +48,28 @@ def linefollowing():
         #lower = np.array([0,0,0])
 
         #mask = cv2.inRange(hsv, lower, upper)
-
+        '''
         ## Gen lower mask (0-5) and upper mask (175-180) of RED
-        mask1 = cv2.inRange(hsv, (0,50,20), (5,255,255))
+        mask1 = cv2.inRange(hsv, (5,50,20), (5,255,255))
         mask2 = cv2.inRange(hsv, (175,50,20), (180,255,255))
 
         ## Merge the mask and crop the red regions
         mask = cv2.bitwise_or(mask1, mask2 )
         croped = cv2.bitwise_and(frame, frame, mask=mask)
         
-        '''
-        ret, img_orig = cap.read()
-        undistorted_img = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
-
-        x, y, w, h = roi
-        rand_img = undistorted_img[y:y+h, x:x+w]
-
-        y_2, x_2 ,z_2 = rand_img.shape
-        '''
         print(y_2)
         print(x_2)
         print(z_2)
-        '''
-        img_crop_y = y_2-y_crop
-        img_crop_x = x_2-x_crop
-        img_orig = rand_img[x_crop:img_crop_x, y_crop:img_crop_y]
+        
         
         if ret == True: 
 
-            fish = img_orig.copy()
+            fish = frame.copy()
 
-            gray = cv2.cvtColor(img_orig, cv2.COLOR_RGB2GRAY)
+            gray = cv2.cvtColor(frame, cv2.COLOR_RGB2GRAY)
             blur = cv2.GaussianBlur(gray, blur_coefficient, 0)
             mask = cv2.threshold(blur, 167, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
-        '''
+        
         contours, hierarchy = cv2.findContours(mask, 1,cv2.CHAIN_APPROX_NONE)
         cv2.drawContours(frame, contours, -1, (0,255,0), 1)
         '''
@@ -87,7 +77,7 @@ def linefollowing():
             cont = max(contours,key = c.contourArea)
             momnts = c.moments(cont)
 
-            if momnts["m00"] !=0:
+            if momnts["m00"] !=0:3
                 cont_x = int(momnts['m10']/momnts['m00'])
                 cont_y = int(momnts['m01']/momnts['m00'])
                 c.circle(frame, (cont_x,cont_y), 5, (255,255,255), -1)

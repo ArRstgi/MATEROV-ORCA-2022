@@ -9,16 +9,15 @@ def detectFishLength():
   cm_offset = 0
   pixel_offset = 0
   fish_ref = 11
-  x_crop = 250
-  y_crop = 0
-
+  x_crop = 0
+  y_crop = 15
   calib_result_pickle = pickle.load(open("camera_calib_pickle.p", "rb" ))
   mtx = calib_result_pickle["mtx"]
   optimal_camera_matrix = calib_result_pickle["optimal_camera_matrix"]
   dist = calib_result_pickle["dist"]
   roi = calib_result_pickle["roi"]
 
-  cap = cv2.VideoCapture(1)
+  cap = cv2.VideoCapture(2)
 
   if (cap.isOpened()== False):
 
@@ -50,7 +49,7 @@ def detectFishLength():
       blur = cv2.GaussianBlur(gray, blur_coefficient, 0)
       thresh = cv2.threshold(blur, 55, 255, cv2.THRESH_BINARY + cv2.THRESH_OTSU)[1]
       img_erode = cv2.erode(thresh, kernel, iterations=1)
-      
+     
       x,y,w,h = cv2.boundingRect(img_erode)
       #length = (25*(w+(pixel_offset*(w/fish_ref)))/h)+cm_offset
       length = ((fish_ref*w)/(h+pixel_offset))+cm_offset
