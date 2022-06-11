@@ -17,7 +17,9 @@ def detectWreckLength():
   dist = calib_result_pickle["dist"]
   roi = calib_result_pickle["roi"]
 
-  cap = cv2.VideoCapture(0)
+  cap = cv2.VideoCapture(2)
+  #cap.set(3,480)
+  #cap.set(4,360)
 
   if (cap.isOpened()== False):
 
@@ -28,7 +30,7 @@ def detectWreckLength():
     ret, img_orig = cap.read()
     undistorted_img = cv2.undistort(img_orig, mtx, dist, None, optimal_camera_matrix)
 
-    y_2, x_2 ,z_2 = rand_img.shape
+    y_2, x_2 ,z_2 = undistorted_img.shape
     '''
     print(y_2)
     print(x_2)
@@ -36,7 +38,7 @@ def detectWreckLength():
     '''
     img_crop_y = y_2-y_crop
     img_crop_x = x_2-x_crop
-    img_orig = rand_img[y_crop:img_crop_y, x_crop:img_crop_x]
+    img_orig = undistorted_img[y_crop:img_crop_y, x_crop:img_crop_x]
 
     if ret == True:
 
@@ -70,3 +72,6 @@ def detectWreckLength():
   cap.release()
   cv2.destroyAllWindows()
   
+
+
+detectWreckLength()
